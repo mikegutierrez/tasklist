@@ -5,7 +5,7 @@ class Footer extends Component {
 	render() {
 		const currentYear = moment().format('YYYY');
 		return (
-			<footer id="footer">
+			<footer id="footer" className="bg-white box-shadow-light">
 				<div className="small text-center vertically-center">
 					&copy; Copyright { currentYear } Mike Gutierrez. <span className="mobile-break">All rights reserved.</span>
 				<br className="hidden-xs-mobile"/>

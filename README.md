@@ -2,10 +2,18 @@
 
 Task List project built on React, LESS & Webpack.
 
+# Requirements
+
+* Do not allow blank tasks
+* Create a new task when user presses enter key or clicks the 'Add Task' button
+* Create a close button that appears on hover. Clicking the button removes the task from the list and application memory
+* Once a task has been marked complete, add it to a new list on the page
+
 ## Built With
 
 * [Babel CLI](https://github.com/babel/babel/tree/master/packages/babel-cli) - Compile from the command line
 * [Babel Core](https://github.com/babel/babel/tree/master/packages/babel-core) - Support the latest version of Javascript
+* [Bootstrap](https://github.com/twbs/bootstrap) - HTML, CSS, and Javascript framework used for design and layout features
 * [Classnames](https://github.com/JedWatson/classnames) - Utility for conditionally creating strings of classNames
 * [ESLint](https://github.com/eslint/eslint) - Tool for maintaining clean and consistent code
 * [Express](https://github.com/expressjs/express) - Web framework for node
@@ -21,4 +29,3 @@ Task List project built on React, LESS & Webpack.
 
 * [Dean Sacramone](https://github.com/dsacramone) for his helper functions used in this project.
 	* [autoBindMethods](https://github.com/mikegutierrez/portfolio/blob/master/src/helpers/autoBindMethods.js) - Prevents the need for repetitive -> method = method.bind(this)
-	* [mapStateActionsToProps](https://github.com/mikegutierrez/portfolio/blob/master/src/helpers/mapStateActionsToProps.js) - Connects component with actions & state, by attaching to the props of the component
