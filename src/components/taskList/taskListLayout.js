@@ -19,8 +19,41 @@ class ResumeLayout extends Component {
 		this.setState({ tasks: list });
 	}
 
-	removeTask() {
-		console.log('Task Removed!');
+	removeTask(task, index) {
+		const list = this.state.tasks;
+		const item = list.indexOf(task);
+
+		if (index >= 0) {
+			list.splice(item, 1);
+		}
+		this.setState({ tasks: list });
+	}
+
+	renderTaskList() {
+		return (
+			this.state.tasks.map((task, index) => {
+				return (
+					<li className="margin-top margin-bottom" key={index}>
+						<input type="checkbox" id="check-task1"/>
+						<label
+							htmlFor="check-task1"
+							className="margin-left margin-right"
+						>
+							{task}
+						</label>
+						<span>
+							<button
+								type="button"
+								className="btn btn-danger"
+								onClick={() => this.removeTask(task, index)}
+							>
+								x
+							</button>
+						</span>
+					</li>
+				);
+			})
+		);
 	}
 
 	render() {
@@ -40,30 +73,7 @@ class ResumeLayout extends Component {
 							</button>
 						</div>
 						<ul className="list-unstyled">
-							{
-								this.state.tasks.map((task, index) => {
-									return (
-										<li className="margin-top margin-bottom" key={index}>
-											<input type="checkbox" id="check-task1"/>
-											<label
-												htmlFor="check-task1"
-												className="margin-left margin-right"
-											>
-												{task}
-											</label>
-											<span>
-												<button
-													type="button"
-													className="btn btn-danger"
-													onClick={this.removeTask}
-												>
-													x
-												</button>
-											</span>
-										</li>
-									);
-								})
-							}
+							{ this.state.tasks && this.renderTaskList() }
 						</ul>
 					</div>
 					<div className="col-md-4">
