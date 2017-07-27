@@ -8,7 +8,8 @@ class ResumeLayout extends Component {
 	constructor() {
 		super();
 		this.state = {
-			tasks: []
+			tasks: [],
+			completed: []
 		};
 		autoBindMethods(this);
 	}
@@ -29,14 +30,59 @@ class ResumeLayout extends Component {
 		this.setState({ tasks: list });
 	}
 
-	renderTaskList() {
+	checkTask(task, index) {
+		const input = this.refs[`check-task-input-${index}`];
+		const label = this.refs[`check-task-label-${index}`];
+		if (input.checked) {
+			this.removeTask(task, index);
+			this.completeTask(label.innerHTML);
+			this.renderCompletedList();
+		}
+	}
+
+	completeTask(listItem) {
+		const list = this.state.completed.concat(listItem);
+		this.setState({ completed: list });
+	}
+
+	renderCompletedList() {  // create list item component
+		return (
+			this.state.completed.map((completedTask, index) => {
+				return (
+					<li className="margin-top margin-bottom" key={index} ref={`check-completed-${index}`}>
+						<input
+							type="checkbox"
+							defaultChecked={true}
+							id={`check-completed-input-${index}`}
+							ref={`check-completed-input-${index}`}
+						/>
+						<label
+							htmlFor={`check-completed-input-${index}`}
+							ref={`check-completed-label-${index}`}
+							className="margin-left margin-right"
+						>
+							{completedTask}
+						</label>
+					</li>
+				);
+			})
+		);
+	}
+
+	renderTaskList() { // create list item component
 		return (
 			this.state.tasks.map((task, index) => {
 				return (
-					<li className="margin-top margin-bottom" key={index}>
-						<input type="checkbox" id="check-task1"/>
+					<li className="margin-top margin-bottom" key={index} ref={`check-task-${index}`}>
+						<input
+							type="checkbox"
+							id={`check-task-input-${index}`}
+							ref={`check-task-input-${index}`}
+							onChange={() => this.checkTask(task, index)}
+						/>
 						<label
-							htmlFor="check-task1"
+							htmlFor={`check-task-input-${index}`}
+							ref={`check-task-label-${index}`}
 							className="margin-left margin-right"
 						>
 							{task}
@@ -55,7 +101,7 @@ class ResumeLayout extends Component {
 			})
 		);
 	}
-
+	// create taskList & completedList list components
 	render() {
 		return (
 			<div id="resume">
@@ -73,13 +119,13 @@ class ResumeLayout extends Component {
 							</button>
 						</div>
 						<ul className="list-unstyled">
-							{ this.state.tasks && this.renderTaskList() }
+							{ this.state.tasks.length ? this.renderTaskList() : '' }
 						</ul>
 					</div>
 					<div className="col-md-4">
 						<SectionTitle title="Completed" />
-						<ul id="completed-tasks">
-
+						<ul className="list-unstyled">
+							{ this.state.completed.length ? this.renderCompletedList() : '' }
 						</ul>
 					</div>
 				</div>
