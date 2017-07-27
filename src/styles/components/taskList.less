@@ -1,27 +1,16 @@
-#resume {
-	h3, h4, h5, h6 {
-		margin: 0;
-		line-height: 22px;
-	}
+#task-list {
+	.task-list-item {
+		span {
+			opacity: 0;
+			transition: @trans-all300;
 
-	h6 { color: @gr0; }
-
-	.divider-line {
-		&:after { // bottom border
-			position: absolute;
-			bottom: 0;
-			left: 7px;
-			width: 100%;
-			height: 1px;
-			display: block;
-			content: "";
-			background: @gr3;
-			margin-bottom: -5px;
-
-			/* Medium Devices, Desktops */
-			@media only screen and (max-width : 992px) {
-				margin-bottom: -12px;
+			button {
+				position: absolute;
+				right: 0;
 			}
+		}
+		&:hover {
+			span { opacity: 1 }
 		}
 	}
 }

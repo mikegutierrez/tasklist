@@ -94,7 +94,11 @@ class TaskListLayout extends Component {
 		return (
 			this.state.tasks.map((task, index) => {
 				return (
-					<li className="margin-top-xl margin-bottom-xl" key={index} ref={`check-task-${index}`}>
+					<li
+						className="margin-top-xl margin-bottom-xl task-list-item"
+						key={index}
+						ref={`check-task-${index}`}
+					>
 						<input
 							type="checkbox"
 							id={`check-task-input-${index}`}
@@ -154,37 +158,35 @@ class TaskListLayout extends Component {
 	// create taskList & completedList list components
 	render() {
 		return (
-			<div id="resume">
-				<div className="row">
-					<div className="col-md-4 col-md-offset-2">
-						<SectionTitle title="Tasks" />
-						<form onKeyPress={this.onKeyPress}>
-							<input
-								type="text"
-								ref="addTask"
-								placeholder="Add New Task"
-								value={this.state.inputValue}
-								onChange={this.handleChange}
-							/>
-							<button
-								type="button"
-								className="btn btn-primary margin-left"
-								disabled={this.isDisabled()}
-								onClick={this.handleClick}
-							>
-								+
-							</button>
-						</form>
-						<ul className="list-unstyled">
-							{ this.state.tasks.length ? this.renderTaskList() : '' }
-						</ul>
-					</div>
-					<div className="col-md-4">
-						<SectionTitle title="Completed" />
-						<ul className="list-unstyled">
-							{ this.state.completed.length ? this.renderCompletedList() : '' }
-						</ul>
-					</div>
+			<div id="task-list" className="row center-content">
+				<div className="col-md-4">
+					<SectionTitle title="Tasks" />
+					<form onKeyPress={this.onKeyPress}>
+						<input
+							type="text"
+							ref="addTask"
+							placeholder="Add New Task"
+							value={this.state.inputValue}
+							onChange={this.handleChange}
+						/>
+						<button
+							type="button"
+							className="btn btn-primary margin-left"
+							disabled={this.isDisabled()}
+							onClick={this.handleClick}
+						>
+							+
+						</button>
+					</form>
+					<ul className="list-unstyled">
+						{ this.state.tasks.length ? this.renderTaskList() : '' }
+					</ul>
+				</div>
+				<div className="col-md-4">
+					<SectionTitle title="Completed" />
+					<ul className="list-unstyled">
+						{ this.state.completed.length ? this.renderCompletedList() : '' }
+					</ul>
 				</div>
 			</div>
 		);
