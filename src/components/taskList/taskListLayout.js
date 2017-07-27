@@ -23,7 +23,7 @@ class TaskListLayout extends Component {
 		const taskList = this.state.tasks;
 		const taskItem = taskList.indexOf(task);
 
-		if (index >= 0) {
+		if (index != -1) {
 			taskList.splice(taskItem, 1);
 		}
 		this.setState({ tasks: taskList });
@@ -53,7 +53,7 @@ class TaskListLayout extends Component {
 		const completedList = this.state.completed;
 		const completedItem = completedList.indexOf(task);
 
-		if (index >= 0) {
+		if (index != -1) {
 			completedList.splice(completedItem, 1);
 		}
 		this.setState({ completed: completedList });
