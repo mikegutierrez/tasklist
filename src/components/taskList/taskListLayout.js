@@ -8,6 +8,7 @@ class TaskListLayout extends Component {
 	constructor() {
 		super();
 		this.state = {
+			inputValue: '',
 			tasks: [],
 			completed: []
 		};
@@ -121,6 +122,35 @@ class TaskListLayout extends Component {
 			})
 		);
 	}
+
+	isDisabled() {
+		return Boolean(!this.state.inputValue);
+	}
+
+	handleChange(e) {
+		return (
+			this.setState({ inputValue: e.target.value })
+		);
+	}
+
+	handleClick() {
+		return (
+			this.addTask(this.state.inputValue),
+			this.setState({ inputValue: '' })
+		);
+	}
+
+
+	onKeyPress(e) {
+		if (e.key === 'Enter') {
+			e.preventDefault();
+
+			if (!this.isDisabled()) {
+				this.handleClick();
+			}
+		}
+	}
+
 	// create taskList & completedList list components
 	render() {
 		return (
@@ -128,16 +158,23 @@ class TaskListLayout extends Component {
 				<div className="row">
 					<div className="col-md-4 col-md-offset-2">
 						<SectionTitle title="Tasks" />
-						<div>
-							<input type="text" ref="addTask" placeholder="Add New Task"/>
+						<form onKeyPress={this.onKeyPress}>
+							<input
+								type="text"
+								ref="addTask"
+								placeholder="Add New Task"
+								value={this.state.inputValue}
+								onChange={this.handleChange}
+							/>
 							<button
 								type="button"
 								className="btn btn-primary margin-left"
-								onClick={() => this.addTask(this.refs.addTask.value)}
+								disabled={this.isDisabled()}
+								onClick={this.handleClick}
 							>
 								+
 							</button>
-						</div>
+						</form>
 						<ul className="list-unstyled">
 							{ this.state.tasks.length ? this.renderTaskList() : '' }
 						</ul>
