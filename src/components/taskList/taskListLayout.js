@@ -4,7 +4,7 @@ import { autoBindMethods } from '../../helpers/autoBindMethods';
 // Global components
 import SectionTitle from '../global/sectionTitle';
 
-class ResumeLayout extends Component {
+class TaskListLayout extends Component {
 	constructor() {
 		super();
 		this.state = {
@@ -14,30 +14,49 @@ class ResumeLayout extends Component {
 		autoBindMethods(this);
 	}
 
-	addTask() {
-		const value = document.querySelector('#add-task').value;
-		const list = this.state.tasks.concat(value);
+	addTask(task) {
+		const list = this.state.tasks.concat(task);
 		this.setState({ tasks: list });
 	}
 
 	removeTask(task, index) {
-		const list = this.state.tasks;
-		const item = list.indexOf(task);
+		const taskList = this.state.tasks;
+		const taskItem = taskList.indexOf(task);
 
 		if (index >= 0) {
-			list.splice(item, 1);
+			taskList.splice(taskItem, 1);
 		}
-		this.setState({ tasks: list });
+		this.setState({ tasks: taskList });
 	}
 
 	checkTask(task, index) {
-		const input = this.refs[`check-task-input-${index}`];
-		const label = this.refs[`check-task-label-${index}`];
-		if (input.checked) {
+		const taskInput = this.refs[`check-task-input-${index}`];
+		const taskLabel = this.refs[`check-task-label-${index}`];
+
+		if (taskInput.checked) {
 			this.removeTask(task, index);
-			this.completeTask(label.innerHTML);
-			this.renderCompletedList();
+			this.completeTask(taskLabel.innerHTML);
 		}
+	}
+
+	uncheckTask(task, index) {
+		const completedInput = this.refs[`check-completed-input-${index}`];
+		const completedLabel = this.refs[`check-completed-label-${index}`];
+
+		if (!completedInput.checked) {
+			this.addTask(task);
+			this.removeCompletedTask(completedLabel.innerHTML, index);
+		}
+	}
+
+	removeCompletedTask(task, index) {
+		const completedList = this.state.completed;
+		const completedItem = completedList.indexOf(task);
+
+		if (index >= 0) {
+			completedList.splice(completedItem, 1);
+		}
+		this.setState({ completed: completedList });
 	}
 
 	completeTask(listItem) {
@@ -49,12 +68,13 @@ class ResumeLayout extends Component {
 		return (
 			this.state.completed.map((completedTask, index) => {
 				return (
-					<li className="margin-top margin-bottom" key={index} ref={`check-completed-${index}`}>
+					<li className="margin-top-xl margin-bottom-xl" key={index} ref={`check-completed-${index}`}>
 						<input
 							type="checkbox"
 							defaultChecked={true}
 							id={`check-completed-input-${index}`}
 							ref={`check-completed-input-${index}`}
+							onChange={() => this.uncheckTask(completedTask, index)}
 						/>
 						<label
 							htmlFor={`check-completed-input-${index}`}
@@ -73,7 +93,7 @@ class ResumeLayout extends Component {
 		return (
 			this.state.tasks.map((task, index) => {
 				return (
-					<li className="margin-top margin-bottom" key={index} ref={`check-task-${index}`}>
+					<li className="margin-top-xl margin-bottom-xl" key={index} ref={`check-task-${index}`}>
 						<input
 							type="checkbox"
 							id={`check-task-input-${index}`}
@@ -109,11 +129,11 @@ class ResumeLayout extends Component {
 					<div className="col-md-4 col-md-offset-2">
 						<SectionTitle title="Tasks" />
 						<div>
-							<input type="text" id="add-task" placeholder="Add New Task"/>
+							<input type="text" ref="addTask" placeholder="Add New Task"/>
 							<button
 								type="button"
 								className="btn btn-primary margin-left"
-								onClick={this.addTask}
+								onClick={() => this.addTask(this.refs.addTask.value)}
 							>
 								+
 							</button>
@@ -134,4 +154,4 @@ class ResumeLayout extends Component {
 	}
 }
 
-export default ResumeLayout;
+export default TaskListLayout;
