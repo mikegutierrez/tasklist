@@ -31,7 +31,7 @@ class TaskList extends Component {
 						labelIndex={`check-task-label-${index}`}
 						completeTask={this.props.completeTask}
 						removeTask={this.props.removeTask}
-						onChange="taskList"
+						location="taskList"
 						deleteTask={true}
 						key={index}
 					/>

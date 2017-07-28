@@ -33,23 +33,27 @@ class ListItem extends Component {
 
 	constructor() {
 		super();
+		this.state = {
+			checked: false
+		};
 		autoBindMethods(this);
 	}
 
-	checkTask(task, index) {
-		const taskInput = this.refs[this.props.inputIndex];
-		const taskLabel = this.refs[this.props.labelIndex];
-		if (taskInput.checked) {
-			this.props.removeTask(task, index);
-			this.props.completeTask(taskLabel.innerHTML);
+	componentDidMount() {
+		if (this.props.location === 'completedTasks') {
+			this.setState({ checked: true });
 		}
 	}
 
-	uncheckTask(task, index) {
-		const completedInput = this.refs[this.props.inputIndex];
-		const completedLabel = this.refs[this.props.labelIndex];
-		if (completedInput.checked) {
-			this.props.removeCompletedTask(completedLabel.innerHTML, index);
+	handleTaskCheck(location, task, index) {
+		const input = this.refs[this.props.inputIndex];
+		const label = this.refs[this.props.labelIndex];
+
+		if (location === 'taskList' && input.checked) {
+			this.props.removeTask(task, index);
+			this.props.completeTask(label.innerHTML);
+		} else if (location === 'completedTasks' && input.checked) {
+			this.props.removeCompletedTask(label.innerHTML, index);
 		}
 	}
 
@@ -68,6 +72,7 @@ class ListItem extends Component {
 	}
 
 	render() {
+		console.log(' LI state:  ', this.state);
 		return (
 			<li
 				className="margin-top-xl margin-bottom-xl task-list-item" key={this.props.index}>
@@ -75,13 +80,8 @@ class ListItem extends Component {
 					type="checkbox"
 					id={this.props.inputIndex}
 					ref={this.props.inputIndex}
-					onChange={() => {
-						if (this.props.onChange === 'taskList') {
-							this.checkTask(this.props.task, this.props.index);
-						} else {
-							this.uncheckTask(this.props.task, this.props.index);
-						}
-					}}
+					defaultChecked={this.state.checked}
+					onChange={() => this.handleTaskCheck(this.props.location, this.props.task, this.props.index)}
 				/>
 				<label
 					htmlFor={this.props.inputIndex}

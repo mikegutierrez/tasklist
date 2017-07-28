@@ -28,7 +28,7 @@ class CompletedList extends Component {
 						inputIndex={`check-completed-input-${index}`}
 						labelIndex={`check-completed-label-${index}`}
 						removeCompletedTask={this.props.removeCompletedTask}
-						onChange="completedTasks"
+						location="completedTasks"
 						key={index}
 					/>
 				);
