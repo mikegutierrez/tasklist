@@ -27,7 +27,7 @@ class Main extends Component {
 		return (
 			<div>
 				<Header />
-				<div className="container">
+				<div className="container wrapper">
 					{
 						React.cloneElement(
 							this.props.children,

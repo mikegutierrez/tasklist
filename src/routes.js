@@ -5,14 +5,14 @@ import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 
 // Main route depencies
 import Main from './containers/main';
-import TaskListLayout from './components/taskList/taskListLayout';
+import ListLayout from './components/taskList/listLayout';
 
 class Handler extends React.Component {
 	render() {
 		return (
 			<Router history={ browserHistory }>
 				<Route path="/" component={ Main }>
-					<IndexRoute component={ TaskListLayout }/>
+					<IndexRoute component={ ListLayout }/>
 				</Route>
 				<Route path="*" onEnter={() => browserHistory.push('/')} />
 			</Router>

@@ -4,7 +4,9 @@ class Header extends Component {
 	render() {
 		return (
 			<div id="header">
-				Header
+				<div className="container text-white fw-600">
+					<div className="h4">Header</div>
+				</div>
 			</div>
 		);
 	}
