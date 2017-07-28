@@ -1,6 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { autoBindMethods } from '../../helpers/autoBindMethods';
 
+// Task List components
+import CheckBox from './checkBox';
+
 class ListItem extends Component {
 	static get propTypes() {
 		return {
@@ -33,26 +36,32 @@ class ListItem extends Component {
 
 	constructor() {
 		super();
-		this.state = {
-			checked: false
-		};
+		// this.state = {
+		// 	checked: false
+		// };
 		autoBindMethods(this);
 	}
 
-	componentDidMount() {
-		if (this.props.location === 'completedTasks') {
-			this.setState({ checked: true });
-		}
-	}
+	// componentDidMount() {
+	// 	if (this.props.location === 'completedTasks') {
+	// 		this.setState({ checked: true });
+	// 	}
+	// }
 
 	handleTaskCheck(location, task, index) {
+		console.log('handleTaskCheck');
 		const input = this.refs[this.props.inputIndex];
 		const label = this.refs[this.props.labelIndex];
 
+		console.log('input:  ', input);
+		console.log('label:  ', label);
+
 		if (location === 'taskList' && input.checked) {
+			console.log('taskList if block');
 			this.props.removeTask(task, index);
 			this.props.completeTask(label.innerHTML);
 		} else if (location === 'completedTasks' && input.checked) {
+			console.log('completedTasks if block');
 			this.props.removeCompletedTask(label.innerHTML, index);
 		}
 	}
@@ -75,21 +84,12 @@ class ListItem extends Component {
 		console.log(' LI state:  ', this.state);
 		return (
 			<li
-				className="margin-top-xl margin-bottom-xl task-list-item" key={this.props.index}>
-				<input
-					type="checkbox"
-					id={this.props.inputIndex}
+				className="margin-top margin-bottom task-list-item" key={this.props.index}>
+				<CheckBox
 					ref={this.props.inputIndex}
-					defaultChecked={this.state.checked}
+					label={this.props.task}
 					onChange={() => this.handleTaskCheck(this.props.location, this.props.task, this.props.index)}
 				/>
-				<label
-					htmlFor={this.props.inputIndex}
-					ref={this.props.labelIndex}
-					className="margin-left margin-right"
-				>
-					{this.props.task}
-				</label>
 				{ this.props.deleteTask && this.renderCloseButton() }
 			</li>
 		);

@@ -7,6 +7,9 @@ class CheckBox extends Component {
 		return {
 			checked: PropTypes.bool,
 			onChange: PropTypes.func,
+			label: PropTypes.string,
+			width: PropTypes.string,
+			height: PropTypes.string,
 			classes: PropTypes.array
 		};
 	}
@@ -15,6 +18,9 @@ class CheckBox extends Component {
 		return {
 			checked: false,
 			onChange: () => {},
+			label: '',
+			width: '20px',
+			height: '20px',
 			classes: []
 		};
 	}
@@ -34,19 +40,40 @@ class CheckBox extends Component {
 	}
 
 	onChange(e) {
-		console.log('onChange');
 		e.preventDefault();
 		const checked = !this.state.checked;
 		this.setState({ checked }, () => this.props.onChange(checked));
 	}
 
+	renderIcon() {
+		const iconStyle = { width: this.props.height, height: this.props.height };
+		const iconClass = classnames('check-icon', 'align-vertical', {
+			'active': this.state.checked
+		});
+		return (
+			<div className={iconClass} style={iconStyle}></div>
+		);
+	}
+
+	renderLabel() {
+		const labelStyle = { lineHeight: this.props.height, fontSize: parseInt(this.props.height, 10) - 4 + 'px' };
+		return (
+			<label className="align-vertical" style={labelStyle}>
+				{this.props.label}
+			</label>
+		);
+	}
+
 	render() {
 		const classes = this.props.classes.join(' ');
+		const componentClasses = classnames('check-box', {
+			[classes]: classes
+		});
 		return (
-			<div
-				onClick={this.onChange}
-				className={classnames('check-box', { 'active': this.state.checked, [classes]: classes })}
-			></div>
+			<div onClick={this.onChange} className={componentClasses}>
+				{ this.renderIcon() }
+				{ this.props.label && this.renderLabel() }
+			</div>
 		);
 	}
 }
