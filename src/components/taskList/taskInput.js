@@ -1,7 +1,23 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { autoBindMethods } from '../../helpers/autoBindMethods';
 
 class TaskInput extends Component {
+	static get propTypes() {
+		return {
+			inputValue: PropTypes.string.isRequired,
+			handleClick: PropTypes.func.isRequired,
+			handleChange: PropTypes.func.isRequired
+		};
+	}
+
+	static get defaultProps() {
+		return {
+			inputValue: '',
+			handleClick: () => {},
+			handleChange: () => {}
+		};
+	}
+
 	constructor() {
 		super();
 		autoBindMethods(this);

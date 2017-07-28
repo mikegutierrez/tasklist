@@ -67,12 +67,30 @@ class ListLayout extends Component {
 			<div id="task-list" className="row center-content">
 				<div className="col-md-4">
 					<SectionTitle title="Tasks" />
-					<TaskInput inputValue={this.state.inputValue} handleChange={this.handleChange} handleClick={this.handleClick} />
-					{ this.state.tasks.length ? <TaskList tasks={this.state.tasks} completeTask={this.completeTask} removeTask={this.removeTask} /> : '' }
+					<TaskInput
+						inputValue={this.state.inputValue}
+						handleChange={this.handleChange}
+						handleClick={this.handleClick}
+					/>
+					{
+					this.state.tasks &&
+						<TaskList
+							tasks={this.state.tasks}
+							completeTask={this.completeTask}
+							removeTask={this.removeTask}
+						/>
+					}
 				</div>
 				<div className="col-md-4">
 					<SectionTitle title="Completed" />
-					{ this.state.completed.length ? <CompletedList tasks={this.state.tasks} completed={this.state.completed} removeCompletedTask={this.removeCompletedTask}/> : '' }
+					{
+					this.state.completed &&
+						<CompletedList
+							tasks={this.state.tasks}
+							completed={this.state.completed}
+							removeCompletedTask={this.removeCompletedTask}
+						/>
+					}
 				</div>
 			</div>
 		);

@@ -1,7 +1,36 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { autoBindMethods } from '../../helpers/autoBindMethods';
 
 class ListItem extends Component {
+	static get propTypes() {
+		return {
+			inputIndex: PropTypes.string.isRequired,
+			labelIndex: PropTypes.string.isRequired,
+			task: PropTypes.string.isRequired,
+			index: PropTypes.number.isRequired,
+			onChange: PropTypes.string.isRequired,
+			removeTask: PropTypes.func,
+			completeTask: PropTypes.func,
+			removeCompletedTask: PropTypes.func,
+			deleteTask: PropTypes.bool
+
+		};
+	}
+
+	static get defaultProps() {
+		return {
+			inputIndex: '',
+			labelIndex: '',
+			removeTask: () => {},
+			completeTask: () => {},
+			removeCompletedTask: () => {},
+			task: '',
+			index: 0,
+			onChange: '',
+			deleteTask: false
+		};
+	}
+
 	constructor() {
 		super();
 		autoBindMethods(this);
