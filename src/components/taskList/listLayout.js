@@ -86,7 +86,6 @@ class ListLayout extends Component {
 					{
 					this.state.completed &&
 						<CompletedList
-							tasks={this.state.tasks}
 							completed={this.state.completed}
 							removeCompletedTask={this.removeCompletedTask}
 						/>

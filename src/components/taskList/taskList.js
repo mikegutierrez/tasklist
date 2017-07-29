@@ -25,6 +25,7 @@ class TaskList extends Component {
 			this.props.tasks.map((task, index) => {
 				return (
 					<ListItem
+						defaultChecked={false}
 						task={task}
 						index={index}
 						completeTask={this.props.completeTask}

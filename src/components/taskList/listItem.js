@@ -10,11 +10,11 @@ class ListItem extends Component {
 			task: PropTypes.string.isRequired,
 			location: PropTypes.string.isRequired,
 			index: PropTypes.number.isRequired,
-			onChange: PropTypes.string.isRequired,
 			removeTask: PropTypes.func,
 			completeTask: PropTypes.func,
 			removeCompletedTask: PropTypes.func,
-			deleteTask: PropTypes.bool
+			deleteTask: PropTypes.bool,
+			defaultChecked: PropTypes.bool
 
 		};
 	}
@@ -27,8 +27,8 @@ class ListItem extends Component {
 			task: '',
 			location: '',
 			index: 0,
-			onChange: '',
-			deleteTask: false
+			deleteTask: false,
+			defaultChecked: false
 		};
 	}
 
@@ -66,12 +66,12 @@ class ListItem extends Component {
 	}
 
 	render() {
-		const { index, location, task, deleteTask } = this.props;
+		const { index, location, task, deleteTask, defaultChecked } = this.props;
 		return (
 			<li
 				className="margin-top margin-bottom task-list-item" key={index}>
 				<CheckBox
-					checked={location === 'completedTasks' ? true : this.state.checked}
+					checked={defaultChecked}
 					label={task}
 					onChange={() => this.setState({ checked: true }, () => this.handleTaskCheck(location, task, index))}
 				/>

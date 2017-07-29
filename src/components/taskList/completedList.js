@@ -23,6 +23,7 @@ class CompletedList extends Component {
 			this.props.completed.map((completedTask, index) => {
 				return (
 					<ListItem
+						defaultChecked={true}
 						task={completedTask}
 						index={index}
 						removeCompletedTask={this.props.removeCompletedTask}
