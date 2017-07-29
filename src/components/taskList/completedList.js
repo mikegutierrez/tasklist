@@ -25,8 +25,6 @@ class CompletedList extends Component {
 					<ListItem
 						task={completedTask}
 						index={index}
-						inputIndex={`check-completed-input-${index}`}
-						labelIndex={`check-completed-label-${index}`}
 						removeCompletedTask={this.props.removeCompletedTask}
 						location="completedTasks"
 						key={index}

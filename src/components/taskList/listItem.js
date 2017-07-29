@@ -7,8 +7,6 @@ import CheckBox from './checkBox';
 class ListItem extends Component {
 	static get propTypes() {
 		return {
-			inputIndex: PropTypes.string.isRequired,
-			labelIndex: PropTypes.string.isRequired,
 			task: PropTypes.string.isRequired,
 			location: PropTypes.string.isRequired,
 			index: PropTypes.number.isRequired,
@@ -23,8 +21,6 @@ class ListItem extends Component {
 
 	static get defaultProps() {
 		return {
-			inputIndex: '',
-			labelIndex: '',
 			removeTask: () => {},
 			completeTask: () => {},
 			removeCompletedTask: () => {},
@@ -70,12 +66,11 @@ class ListItem extends Component {
 	}
 
 	render() {
-		const { index, inputIndex, location, task, deleteTask } = this.props;
+		const { index, location, task, deleteTask } = this.props;
 		return (
 			<li
 				className="margin-top margin-bottom task-list-item" key={index}>
 				<CheckBox
-					ref={inputIndex}
 					checked={location === 'completedTasks' ? true : this.state.checked}
 					label={task}
 					onChange={() => this.setState({ checked: true }, () => this.handleTaskCheck(location, task, index))}

@@ -27,8 +27,6 @@ class TaskList extends Component {
 					<ListItem
 						task={task}
 						index={index}
-						inputIndex={`check-task-input-${index}`}
-						labelIndex={`check-task-label-${index}`}
 						completeTask={this.props.completeTask}
 						removeTask={this.props.removeTask}
 						location="taskList"
