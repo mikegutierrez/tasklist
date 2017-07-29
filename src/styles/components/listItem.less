@@ -1,0 +1,26 @@
+.task-list-item {
+	span {
+		opacity: 0;
+		transition: @trans-all300;
+
+		button {
+			position: absolute;
+			right: 0;
+		}
+	}
+
+	&:hover {
+		span { opacity: 1 }
+	}
+
+	&:after { // bottom border
+		position: relative;
+		bottom: 0;
+		left: 30px;
+		width: ~"calc(100% - 30px)";
+		height: 1px;
+		display: block;
+		content: "";
+		background: @gr2;
+	}
+}

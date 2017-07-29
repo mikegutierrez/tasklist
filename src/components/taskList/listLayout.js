@@ -64,32 +64,40 @@ class ListLayout extends Component {
 
 	render() {
 		return (
-			<div id="task-list" className="row center-content">
-				<div className="col-md-4">
-					<SectionTitle title="Tasks" />
-					<TaskInput
-						inputValue={this.state.inputValue}
-						handleChange={this.handleChange}
-						handleClick={this.handleClick}
-					/>
-					{
-					this.state.tasks &&
-						<TaskList
-							tasks={this.state.tasks}
-							completeTask={this.completeTask}
-							removeTask={this.removeTask}
+			<div id="layout">
+				<div className="row">
+					<div className="col-md-12 center-content">
+						<TaskInput
+							inputValue={this.state.inputValue}
+							handleChange={this.handleChange}
+							handleClick={this.handleClick}
 						/>
-					}
+					</div>
 				</div>
-				<div className="col-md-4">
-					<SectionTitle title="Completed" />
-					{
-					this.state.completed &&
-						<CompletedList
-							completed={this.state.completed}
-							removeCompletedTask={this.removeCompletedTask}
-						/>
-					}
+				<div className="row center-content">
+					<div className="col-md-6 list-container">
+						<div className="col-md-6">
+							<SectionTitle title="Tasks" />
+							{
+								this.state.tasks &&
+								<TaskList
+									tasks={this.state.tasks}
+									completeTask={this.completeTask}
+									removeTask={this.removeTask}
+								/>
+							}
+						</div>
+						<div className="col-md-6">
+							<SectionTitle title="Completed" />
+							{
+								this.state.completed &&
+								<CompletedList
+									completed={this.state.completed}
+									removeCompletedTask={this.removeCompletedTask}
+								/>
+							}
+						</div>
+					</div>
 				</div>
 			</div>
 		);

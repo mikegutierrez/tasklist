@@ -68,8 +68,7 @@ class ListItem extends Component {
 	render() {
 		const { index, location, task, deleteTask, defaultChecked } = this.props;
 		return (
-			<li
-				className="margin-top margin-bottom task-list-item" key={index}>
+			<li className="margin-top margin-bottom task-list-item" key={index}>
 				<CheckBox
 					checked={defaultChecked}
 					label={task}

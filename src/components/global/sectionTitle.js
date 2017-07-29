@@ -26,8 +26,10 @@ class SectionTitle extends Component {
 		const { title, classes } = this.props;
 		const classList = classes.join(' ');
 		return (
-			<div className={classnames('margin-bottom', { [classes]: classList })}>
-				<div className="h4 fw-400 text-uppercase padding-bottom-s margin-top-0 margin-bottom-0">
+			<div className={classnames('margin-bottom', 'margin-top',
+				{ [classes]: classList }
+			)}>
+				<div className="h4 fw-400 text-uppercase text-center padding-bottom-s margin-top-0 margin-bottom-0">
 					{title}
 				</div>
 				<div className="underline-s"></div>
