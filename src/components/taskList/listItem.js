@@ -10,6 +10,7 @@ class ListItem extends Component {
 			inputIndex: PropTypes.string.isRequired,
 			labelIndex: PropTypes.string.isRequired,
 			task: PropTypes.string.isRequired,
+			location: PropTypes.string.isRequired,
 			index: PropTypes.number.isRequired,
 			onChange: PropTypes.string.isRequired,
 			removeTask: PropTypes.func,
@@ -28,6 +29,7 @@ class ListItem extends Component {
 			completeTask: () => {},
 			removeCompletedTask: () => {},
 			task: '',
+			location: '',
 			index: 0,
 			onChange: '',
 			deleteTask: false
@@ -36,33 +38,20 @@ class ListItem extends Component {
 
 	constructor() {
 		super();
-		// this.state = {
-		// 	checked: false
-		// };
+		this.state = {
+			checked: false
+		};
 		autoBindMethods(this);
 	}
 
-	// componentDidMount() {
-	// 	if (this.props.location === 'completedTasks') {
-	// 		this.setState({ checked: true });
-	// 	}
-	// }
-
 	handleTaskCheck(location, task, index) {
-		console.log('handleTaskCheck');
-		const input = this.refs[this.props.inputIndex];
-		const label = this.refs[this.props.labelIndex];
+		const label = this.props.task;
 
-		console.log('input:  ', input);
-		console.log('label:  ', label);
-
-		if (location === 'taskList' && input.checked) {
-			console.log('taskList if block');
+		if (location === 'taskList' && this.state.checked) {
 			this.props.removeTask(task, index);
-			this.props.completeTask(label.innerHTML);
-		} else if (location === 'completedTasks' && input.checked) {
-			console.log('completedTasks if block');
-			this.props.removeCompletedTask(label.innerHTML, index);
+			this.props.completeTask(label);
+		} else if (location === 'completedTasks' && this.state.checked) {
+			this.props.removeCompletedTask(label, index);
 		}
 	}
 
@@ -81,16 +70,17 @@ class ListItem extends Component {
 	}
 
 	render() {
-		console.log(' LI state:  ', this.state);
+		const { index, inputIndex, location, task, deleteTask } = this.props;
 		return (
 			<li
-				className="margin-top margin-bottom task-list-item" key={this.props.index}>
+				className="margin-top margin-bottom task-list-item" key={index}>
 				<CheckBox
-					ref={this.props.inputIndex}
-					label={this.props.task}
-					onChange={() => this.handleTaskCheck(this.props.location, this.props.task, this.props.index)}
+					ref={inputIndex}
+					checked={location === 'completedTasks' ? true : this.state.checked}
+					label={task}
+					onChange={() => this.setState({ checked: true }, () => this.handleTaskCheck(location, task, index))}
 				/>
-				{ this.props.deleteTask && this.renderCloseButton() }
+				{ deleteTask && this.renderCloseButton() }
 			</li>
 		);
 	}
