@@ -56,10 +56,10 @@ class ListItem extends Component {
 			<span>
 				<button
 					type="button"
-					className="btn btn-danger"
+					className="btn btn-transparent"
 					onClick={() => this.props.removeTask(this.props.task, this.props.index)}
 				>
-					x
+					X
 				</button>
 			</span>
 		);

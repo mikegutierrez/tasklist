@@ -42,7 +42,7 @@ class TaskInput extends Component {
 			<form className="task-input-form" onKeyPress={this.onKeyPress}>
 				<button
 					type="button"
-					className="btn btn-primary margin-right inline-block"
+					className="btn btn-transparent margin-right inline-block"
 					disabled={this.isDisabled()}
 					onClick={this.props.handleClick}
 					>
