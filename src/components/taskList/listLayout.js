@@ -65,18 +65,9 @@ class ListLayout extends Component {
 	render() {
 		return (
 			<div id="layout">
-				<div className="row">
-					<div className="col-md-12 center-content">
-						<TaskInput
-							inputValue={this.state.inputValue}
-							handleChange={this.handleChange}
-							handleClick={this.handleClick}
-						/>
-					</div>
-				</div>
 				<div className="row center-content">
 					<div className="col-md-6 list-container">
-						<div className="col-md-6">
+						<div className="col-md-6 margin-bottom-xl">
 							<SectionTitle title="Tasks" />
 							{
 								this.state.tasks &&
@@ -87,7 +78,7 @@ class ListLayout extends Component {
 								/>
 							}
 						</div>
-						<div className="col-md-6">
+						<div className="col-md-6 margin-bottom-xl">
 							<SectionTitle title="Completed" />
 							{
 								this.state.completed &&
@@ -96,6 +87,15 @@ class ListLayout extends Component {
 									removeCompletedTask={this.removeCompletedTask}
 								/>
 							}
+						</div>
+						<div className="row input-container">
+							<div className="col-md-12">
+								<TaskInput
+									inputValue={this.state.inputValue}
+									handleChange={this.handleChange}
+									handleClick={this.handleClick}
+								/>
+							</div>
 						</div>
 					</div>
 				</div>

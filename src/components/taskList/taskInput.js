@@ -39,7 +39,15 @@ class TaskInput extends Component {
 
 	render() {
 		return (
-			<form onKeyPress={this.onKeyPress}>
+			<form className="task-input-form" onKeyPress={this.onKeyPress}>
+				<button
+					type="button"
+					className="btn btn-primary margin-right inline-block"
+					disabled={this.isDisabled()}
+					onClick={this.props.handleClick}
+					>
+					+
+				</button>
 				<input
 					type="text"
 					ref="addTask"
@@ -47,14 +55,6 @@ class TaskInput extends Component {
 					value={this.props.inputValue}
 					onChange={this.props.handleChange}
 				/>
-				<button
-					type="button"
-					className="btn btn-primary margin-left"
-					disabled={this.isDisabled()}
-					onClick={this.props.handleClick}
-				>
-					+
-				</button>
 			</form>
 		);
 	}
