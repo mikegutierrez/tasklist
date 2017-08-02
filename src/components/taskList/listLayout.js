@@ -54,7 +54,7 @@ class ListLayout extends Component {
 				<div className="row center-content">
 					<div className="col-xs-12 col-sm-8 col-md-6 list-container">
 						<div className="col-xs-12 col-sm-12 col-md-6 margin-bottom-xl">
-							<SectionTitle title="Tasks" />
+							<SectionTitle title="Tasks" count={this.state.tasks.length}/>
 							{
 								this.state.tasks &&
 								<TaskList
@@ -70,7 +70,7 @@ class ListLayout extends Component {
 							/>
 						</div>
 						<div className="col-xs-12 col-sm-12 col-md-6 margin-bottom-xl">
-							<SectionTitle title="Completed" />
+							<SectionTitle title="Completed" count={this.state.completed.length}/>
 							{
 								this.state.completed &&
 								<CompletedList

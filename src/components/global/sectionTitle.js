@@ -5,14 +5,16 @@ class SectionTitle extends Component {
 	static get propTypes() {
 		return {
 			title: PropTypes.string.isRequired,
-			classes: PropTypes.array
+			classes: PropTypes.array,
+			count: PropTypes.number
 		};
 	}
 
 	static get defaultProps() {
 		return {
 			title: '',
-			classes: []
+			classes: [],
+			count: 0
 		};
 	}
 
@@ -31,6 +33,7 @@ class SectionTitle extends Component {
 			)}>
 				<div className="h4 fw-400 text-uppercase text-center padding-bottom-s margin-top-0 margin-bottom-0">
 					{title}
+					<span className="task-count">{this.props.count}</span>
 				</div>
 				<div className="underline-s"></div>
 			</div>
