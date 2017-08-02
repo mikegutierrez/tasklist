@@ -52,8 +52,8 @@ class ListLayout extends Component {
 		return (
 			<div id="layout">
 				<div className="row center-content">
-					<div className="col-md-6 list-container">
-						<div className="col-md-6 margin-bottom-xl">
+					<div className="col-xs-12 col-sm-8 col-md-6 list-container">
+						<div className="col-xs-12 col-sm-12 col-md-6 margin-bottom-xl">
 							<SectionTitle title="Tasks" />
 							{
 								this.state.tasks &&
@@ -69,7 +69,7 @@ class ListLayout extends Component {
 								name="list"
 							/>
 						</div>
-						<div className="col-md-6 margin-bottom-xl">
+						<div className="col-xs-12 col-sm-12 col-md-6 margin-bottom-xl">
 							<SectionTitle title="Completed" />
 							{
 								this.state.completed &&
