@@ -9,6 +9,7 @@ class List extends Component {
 			location: PropTypes.string.isRequired,
 			tasks: PropTypes.array.isRequired,
 			addTask: PropTypes.func.isRequired,
+			editTask: PropTypes.func.isRequired,
 			completeTask: PropTypes.func.isRequired,
 			deleteTask: PropTypes.func.isRequired
 		};
@@ -19,6 +20,7 @@ class List extends Component {
 			location: '',
 			tasks: [],
 			addTask: () => {},
+			editTask: () => {},
 			completeTask: () => {},
 			deleteTask: () => {}
 		};
@@ -33,6 +35,7 @@ class List extends Component {
 						task={task}
 						index={index}
 						addTask={this.props.addTask}
+						editTask={this.props.editTask}
 						deleteTask={this.props.deleteTask}
 						completeTask={this.props.completeTask}
 						location={this.props.location}

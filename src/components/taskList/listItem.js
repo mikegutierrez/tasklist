@@ -12,6 +12,7 @@ class ListItem extends Component {
 			location: PropTypes.string.isRequired,
 			index: PropTypes.number.isRequired,
 			addTask: PropTypes.func,
+			editTask: PropTypes.func,
 			deleteTask: PropTypes.func,
 			completeTask: PropTypes.func,
 			deleteButton: PropTypes.bool,
@@ -23,6 +24,7 @@ class ListItem extends Component {
 	static get defaultProps() {
 		return {
 			addTask: () => {},
+			editTask: () => {},
 			deleteTask: () => {},
 			completeTask: () => {},
 			task: '',
@@ -78,6 +80,8 @@ class ListItem extends Component {
 				<CheckBox
 					checked={defaultChecked}
 					label={task}
+					editTask={this.props.editTask}
+					index={this.props.index}
 					onChange={() => this.setState({ checked: true }, () => this.handleTaskCheck(location, task, index))}
 				/>
 				{ deleteButton && this.renderCloseButton() }
