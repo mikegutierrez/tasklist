@@ -11,9 +11,9 @@ class ListItem extends Component {
 			task: PropTypes.string.isRequired,
 			location: PropTypes.string.isRequired,
 			index: PropTypes.number.isRequired,
+			addTask: PropTypes.func,
 			deleteTask: PropTypes.func,
 			completeTask: PropTypes.func,
-			removeCompletedTask: PropTypes.func,
 			deleteButton: PropTypes.bool,
 			defaultChecked: PropTypes.bool
 
@@ -22,9 +22,9 @@ class ListItem extends Component {
 
 	static get defaultProps() {
 		return {
+			addTask: () => {},
 			deleteTask: () => {},
 			completeTask: () => {},
-			removeCompletedTask: () => {},
 			task: '',
 			location: '',
 			index: 0,
@@ -48,7 +48,8 @@ class ListItem extends Component {
 			this.props.deleteTask(task, index, location);
 			this.props.completeTask(label);
 		} else if (location === 'completedTasks' && this.state.checked) {
-			this.props.removeCompletedTask(label, index);
+			this.props.deleteTask(task, index, location);
+			this.props.addTask(task);
 		}
 	}
 

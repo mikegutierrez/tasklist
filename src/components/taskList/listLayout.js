@@ -5,8 +5,7 @@ import { autoBindMethods } from '../../helpers/autoBindMethods';
 import SectionTitle from '../global/sectionTitle';
 
 // Task list components
-import TaskList from './taskList';
-import CompletedList from './completedList';
+import List from './list';
 import TaskInput from './taskInput';
 
 class ListLayout extends Component {
@@ -43,16 +42,6 @@ class ListLayout extends Component {
 		}
 	}
 
-	removeCompletedTask(task, index) {
-		const completedList = this.state.completed;
-		const completedItem = completedList.indexOf(task);
-		if (index != -1) {
-			completedList.splice(completedItem, 1);
-		}
-		this.addTask(task);
-		this.setState({ completed: completedList });
-	}
-
 	completeTask(listItem) {
 		const list = this.state.completed.concat(listItem);
 		this.setState({ completed: list });
@@ -67,11 +56,13 @@ class ListLayout extends Component {
 							<SectionTitle title="Tasks" count={this.state.tasks.length}/>
 							{
 								this.state.tasks &&
-								<TaskList
+								<List
+									location="taskList"
 									tasks={this.state.tasks}
 									deleteTask={this.deleteTask}
 									completeTask={this.completeTask}
 								/>
+
 							}
 							<TaskInput
 								addTask={this.addTask}
@@ -83,10 +74,11 @@ class ListLayout extends Component {
 							<SectionTitle title="Completed" count={this.state.completed.length}/>
 							{
 								this.state.completed &&
-								<CompletedList
-									completed={this.state.completed}
+								<List
+									location="completedTasks"
+									tasks={this.state.completed}
 									deleteTask={this.deleteTask}
-									removeCompletedTask={this.removeCompletedTask}
+									addTask={this.addTask}
 								/>
 							}
 						</div>
