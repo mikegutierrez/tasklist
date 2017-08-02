@@ -52,7 +52,7 @@ class CheckBox extends Component {
 
 	renderIcon() {
 		const iconStyle = { width: this.props.height, height: this.props.height };
-		const iconClass = classnames('check-icon', 'align-vertical', {
+		const iconClass = classnames('check-icon', 'inline-block', {
 			'active': this.state.checked
 		});
 		return (
@@ -64,7 +64,7 @@ class CheckBox extends Component {
 		const labelStyle = { lineHeight: this.props.height, fontSize: parseInt(this.props.height, 10) - 4 + 'px' };
 		return (
 			<input
-				className="align-vertical"
+				className="input-label inline-block"
 				style={labelStyle}
 				defaultValue={this.props.label}
 				onChange={this.handleChange}
