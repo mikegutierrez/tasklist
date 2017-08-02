@@ -13,7 +13,6 @@ class ListLayout extends Component {
 	constructor() {
 		super();
 		this.state = {
-			inputValue: '',
 			tasks: [],
 			completed: []
 		};
@@ -49,19 +48,6 @@ class ListLayout extends Component {
 		this.setState({ completed: list });
 	}
 
-	handleChange(e) {
-		return (
-			this.setState({ inputValue: e.target.value })
-		);
-	}
-
-	handleClick() {
-		return (
-			this.addTask(this.state.inputValue),
-			this.setState({ inputValue: '' })
-		);
-	}
-
 	render() {
 		return (
 			<div id="layout">
@@ -78,9 +64,7 @@ class ListLayout extends Component {
 								/>
 							}
 							<TaskInput
-								inputValue={this.state.inputValue}
-								handleChange={this.handleChange}
-								handleClick={this.handleClick}
+								addTask={this.addTask}
 								autofocus={true}
 								name="list"
 							/>
@@ -98,9 +82,7 @@ class ListLayout extends Component {
 						<div className="row input-container">
 							<div className="col-md-12">
 								<TaskInput
-									inputValue={this.state.inputValue}
-									handleChange={this.handleChange}
-									handleClick={this.handleClick}
+									addTask={this.addTask}
 									large={true}
 									name="bottom"
 								/>

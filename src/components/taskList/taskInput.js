@@ -5,9 +5,7 @@ import classnames from 'classnames';
 class TaskInput extends Component {
 	static get propTypes() {
 		return {
-			inputValue: PropTypes.string.isRequired,
-			handleClick: PropTypes.func.isRequired,
-			handleChange: PropTypes.func.isRequired,
+			addTask: PropTypes.func.isRequired,
 			large: PropTypes.bool,
 			autofocus: PropTypes.bool,
 			name: PropTypes.string
@@ -16,9 +14,7 @@ class TaskInput extends Component {
 
 	static get defaultProps() {
 		return {
-			inputValue: '',
-			handleClick: () => {},
-			handleChange: () => {},
+			addTask: () => {},
 			large: false,
 			autofocus: false,
 			name: ''
@@ -27,11 +23,14 @@ class TaskInput extends Component {
 
 	constructor() {
 		super();
+		this.state = {
+			inputValue: ''
+		};
 		autoBindMethods(this);
 	}
 
 	isDisabled() {
-		return Boolean(!this.props.inputValue);
+		return Boolean(!this.state.inputValue);
 	}
 
 	onKeyPress(e) {
@@ -39,9 +38,22 @@ class TaskInput extends Component {
 			e.preventDefault();
 
 			if (!this.isDisabled()) {
-				this.props.handleClick();
+				this.handleClick();
 			}
 		}
+	}
+
+	handleChange(e) {
+		return (
+			this.setState({ inputValue: e.target.value })
+		);
+	}
+
+	handleClick() {
+		return (
+			this.props.addTask(this.state.inputValue),
+			this.setState({ inputValue: '' })
+		);
 	}
 
 	render() {
@@ -58,7 +70,7 @@ class TaskInput extends Component {
 					type="button"
 					className={btnClasses}
 					disabled={this.isDisabled()}
-					onClick={this.props.handleClick}
+					onClick={() => this.handleClick()}
 				>
 					+
 				</button>
@@ -66,9 +78,9 @@ class TaskInput extends Component {
 					autoFocus={this.props.autofocus}
 					type="text"
 					placeholder={placeholder}
-					value={this.props.inputValue}
+					value={this.state.inputValue}
 					name={this.props.name}
-					onChange={this.props.handleChange}
+					onChange={this.handleChange}
 				/>
 			</form>
 		);
