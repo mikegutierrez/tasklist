@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { autoBindMethods } from '../helpers/autoBindMethods';
 
 // Global components
-import Header from '../components/global/Header';
 import Footer from '../components/global/Footer';
 
 class Main extends Component {
@@ -26,7 +25,6 @@ class Main extends Component {
 	render() {
 		return (
 			<div>
-				<Header />
 				<div className="container wrapper">
 					{
 						React.cloneElement(
