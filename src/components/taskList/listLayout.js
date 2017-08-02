@@ -77,6 +77,13 @@ class ListLayout extends Component {
 									removeTask={this.removeTask}
 								/>
 							}
+							<TaskInput
+								inputValue={this.state.inputValue}
+								handleChange={this.handleChange}
+								handleClick={this.handleClick}
+								autofocus={true}
+								name="list"
+							/>
 						</div>
 						<div className="col-md-6 margin-bottom-xl">
 							<SectionTitle title="Completed" />
@@ -94,6 +101,8 @@ class ListLayout extends Component {
 									inputValue={this.state.inputValue}
 									handleChange={this.handleChange}
 									handleClick={this.handleClick}
+									large={true}
+									name="bottom"
 								/>
 							</div>
 						</div>
