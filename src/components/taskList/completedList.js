@@ -7,6 +7,7 @@ class CompletedList extends Component {
 	static get propTypes() {
 		return {
 			completed: PropTypes.array.isRequired,
+			deleteTask: PropTypes.func.isRequired,
 			removeCompletedTask: PropTypes.func.isRequired
 		};
 	}
@@ -14,6 +15,7 @@ class CompletedList extends Component {
 	static get defaultProps() {
 		return {
 			completed: [],
+			deleteTask: () => {},
 			removeCompletedTask: () => {}
 		};
 	}
@@ -26,6 +28,7 @@ class CompletedList extends Component {
 						defaultChecked={true}
 						task={completedTask}
 						index={index}
+						deleteTask={this.props.deleteTask}
 						removeCompletedTask={this.props.removeCompletedTask}
 						location="completedTasks"
 						key={index}

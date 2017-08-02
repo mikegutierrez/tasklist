@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { autoBindMethods } from '../../helpers/autoBindMethods';
+import classnames from 'classnames';
 
 // Task List components
 import CheckBox from './checkBox';
@@ -10,10 +11,10 @@ class ListItem extends Component {
 			task: PropTypes.string.isRequired,
 			location: PropTypes.string.isRequired,
 			index: PropTypes.number.isRequired,
-			removeTask: PropTypes.func,
+			deleteTask: PropTypes.func,
 			completeTask: PropTypes.func,
 			removeCompletedTask: PropTypes.func,
-			deleteTask: PropTypes.bool,
+			deleteButton: PropTypes.bool,
 			defaultChecked: PropTypes.bool
 
 		};
@@ -21,13 +22,13 @@ class ListItem extends Component {
 
 	static get defaultProps() {
 		return {
-			removeTask: () => {},
+			deleteTask: () => {},
 			completeTask: () => {},
 			removeCompletedTask: () => {},
 			task: '',
 			location: '',
 			index: 0,
-			deleteTask: false,
+			deleteButton: true,
 			defaultChecked: false
 		};
 	}
@@ -44,7 +45,7 @@ class ListItem extends Component {
 		const label = this.props.task;
 
 		if (location === 'taskList' && this.state.checked) {
-			this.props.removeTask(task, index);
+			this.props.deleteTask(task, index, location);
 			this.props.completeTask(label);
 		} else if (location === 'completedTasks' && this.state.checked) {
 			this.props.removeCompletedTask(label, index);
@@ -52,21 +53,25 @@ class ListItem extends Component {
 	}
 
 	renderCloseButton() {
+		const { location, deleteTask, task, index } = this.props;
+		const buttonClasses = classnames('btn', 'btn-transparent', {
+			[location]: location
+		});
 		return (
 			<span>
 				<button
 					type="button"
-					className="btn btn-transparent"
-					onClick={() => this.props.removeTask(this.props.task, this.props.index)}
+					className={buttonClasses}
+					onClick={() => deleteTask(task, index, location)}
 				>
-					X
+					<span className="glyphicon glyphicon glyphicon-remove"></span>
 				</button>
 			</span>
 		);
 	}
 
 	render() {
-		const { index, location, task, deleteTask, defaultChecked } = this.props;
+		const { index, location, task, deleteButton, defaultChecked } = this.props;
 		return (
 			<li className="margin-top margin-bottom task-list-item" key={index}>
 				<CheckBox
@@ -74,7 +79,7 @@ class ListItem extends Component {
 					label={task}
 					onChange={() => this.setState({ checked: true }, () => this.handleTaskCheck(location, task, index))}
 				/>
-				{ deleteTask && this.renderCloseButton() }
+				{ deleteButton && this.renderCloseButton() }
 			</li>
 		);
 	}

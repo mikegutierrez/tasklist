@@ -24,13 +24,23 @@ class ListLayout extends Component {
 		this.setState({ tasks: list });
 	}
 
-	removeTask(task, index) {
+	deleteTask(task, index, location) {
 		const taskList = this.state.tasks;
 		const taskItem = taskList.indexOf(task);
-		if (index != -1) {
-			taskList.splice(taskItem, 1);
+		const completedList = this.state.completed;
+		const completedItem = completedList.indexOf(task);
+
+		if (location === 'taskList') {
+			if (index != -1) {
+				taskList.splice(taskItem, 1);
+			}
+			this.setState({ tasks: taskList });
+		} else if (location === 'completedTasks') {
+			if (index != -1) {
+				completedList.splice(completedItem, 1);
+			}
+			this.setState({ completed: completedList });
 		}
-		this.setState({ tasks: taskList });
 	}
 
 	removeCompletedTask(task, index) {
@@ -59,8 +69,8 @@ class ListLayout extends Component {
 								this.state.tasks &&
 								<TaskList
 									tasks={this.state.tasks}
+									deleteTask={this.deleteTask}
 									completeTask={this.completeTask}
-									removeTask={this.removeTask}
 								/>
 							}
 							<TaskInput
@@ -75,6 +85,7 @@ class ListLayout extends Component {
 								this.state.completed &&
 								<CompletedList
 									completed={this.state.completed}
+									deleteTask={this.deleteTask}
 									removeCompletedTask={this.removeCompletedTask}
 								/>
 							}

@@ -7,16 +7,16 @@ class TaskList extends Component {
 	static get propTypes() {
 		return {
 			tasks: PropTypes.array.isRequired,
-			completeTask: PropTypes.func.isRequired,
-			removeTask: PropTypes.func.isRequired
+			deleteTask: PropTypes.func.isRequired,
+			completeTask: PropTypes.func.isRequired
 		};
 	}
 
 	static get defaultProps() {
 		return {
 			tasks: [],
-			completeTask: () => {},
-			removeTask: () => {}
+			deleteTask: () => {},
+			completeTask: () => {}
 		};
 	}
 
@@ -28,10 +28,9 @@ class TaskList extends Component {
 						defaultChecked={false}
 						task={task}
 						index={index}
+						deleteTask={this.props.deleteTask}
 						completeTask={this.props.completeTask}
-						removeTask={this.props.removeTask}
 						location="taskList"
-						deleteTask={true}
 						key={index}
 					/>
 				);

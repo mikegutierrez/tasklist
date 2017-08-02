@@ -33,7 +33,7 @@ class SectionTitle extends Component {
 			)}>
 				<div className="h4 fw-400 text-uppercase text-center padding-bottom-s margin-top-0 margin-bottom-0">
 					{title}
-					<span className="task-count">{this.props.count}</span>
+					<span className="task-count text-br1">{this.props.count}</span>
 				</div>
 				<div className="underline-s"></div>
 			</div>
