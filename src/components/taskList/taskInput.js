@@ -76,6 +76,7 @@ class TaskInput extends Component {
 					+
 				</button>
 				<input
+					className="margin-bottom-s"
 					autoFocus={this.props.autofocus}
 					type="text"
 					placeholder={placeholder}

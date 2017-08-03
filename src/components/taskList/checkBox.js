@@ -63,7 +63,7 @@ class CheckBox extends Component {
 	renderLabel() {
 		return (
 			<textarea
-				className="inline-block"
+				className="inline-block margin-bottom-s"
 				defaultValue={this.props.label}
 				onChange={this.handleChange}
 				onKeyPress={(e) => this.onKeyPress(e, this.props.index)}
