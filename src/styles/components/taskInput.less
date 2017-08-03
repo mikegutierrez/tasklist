@@ -3,9 +3,12 @@
 
 	input {
 		position: relative;
+		left: 7px;
 		top: -1px;
-		left: 15px;
 		width: ~"calc(100% - 40px)";
+		background-color: transparent;
+		line-height: 20px;
+		padding: 2px;
 		border: none;
 		outline: none;
 		&:extend(.lato);
@@ -13,10 +16,7 @@
 
 	.btn-transparent {
 		.button-variant(@gr1; transparent; transparent);
-		position: relative;
-		left: 4px;
-		top: -3px;
-		padding: 0;
+		padding: 1px 4px 2px;
 		border: none;
 		font-size: 24px;
 		line-height: 26px;
@@ -26,17 +26,6 @@
 			outline: none;
 			box-shadow: none;
 		}
-	}
-
-	&:after { // bottom border
-		position: relative;
-		bottom: 1px;
-		left: 30px;
-		width: ~"calc(100% - 30px)";
-		height: 1px;
-		display: block;
-		content: "";
-		background: @gr2;
 	}
 
 	&.large {

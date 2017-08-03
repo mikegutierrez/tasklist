@@ -55,13 +55,13 @@ class ListItem extends Component {
 		}
 	}
 
-	renderCloseButton() {
+	renderDeleteButton() {
 		const { location, deleteTask, task, index } = this.props;
-		const buttonClasses = classnames('btn', 'btn-transparent', {
+		const buttonClasses = classnames('btn', 'btn-delete', {
 			[location]: location
 		});
 		return (
-			<span>
+			<span className="delete-button-wrapper">
 				<button
 					type="button"
 					className={buttonClasses}
@@ -76,7 +76,7 @@ class ListItem extends Component {
 	render() {
 		const { index, location, task, deleteButton, defaultChecked } = this.props;
 		return (
-			<li className="margin-top margin-bottom task-list-item" key={index}>
+			<li className="task-list-item margin-top-s input-border" key={index}>
 				<CheckBox
 					checked={defaultChecked}
 					label={task}
@@ -84,7 +84,7 @@ class ListItem extends Component {
 					index={this.props.index}
 					onChange={() => this.setState({ checked: true }, () => this.handleTaskCheck(location, task, index))}
 				/>
-				{ deleteButton && this.renderCloseButton() }
+				{ deleteButton && this.renderDeleteButton() }
 			</li>
 		);
 	}

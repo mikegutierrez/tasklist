@@ -57,8 +57,9 @@ class TaskInput extends Component {
 	}
 
 	render() {
-		const formClasses = classnames('task-input-form', {
-			'large': this.props.large
+		const formClasses = classnames('task-input-form', 'margin-top-s', {
+			'large': this.props.large,
+			'input-border': !this.props.large
 		});
 		const btnClasses = classnames('btn', 'btn-transparent', 'inline-block', {
 			'margin-right': this.props.large

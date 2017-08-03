@@ -1,15 +1,12 @@
 .task-list-item {
-	position: relative;
-	
-	span {
+	.delete-button-wrapper {
 		opacity: 0;
 		transition: @trans-all300;
 
-		.btn-transparent {
-			.button-variant(@gr2; rgba(0,0,0, .1); transparent);
+		.btn-delete {
+			.button-variant(rgba(0,0,0, .5); rgba(0,0,0, .1); transparent);
 			position: absolute;
-			top: -6px;
-			right: 0;
+			right: 15px;
 			border: none;
 			font-size: 10px;
 			padding: 6px 8px;
@@ -30,16 +27,5 @@
 
 	&:hover {
 		span { opacity: 1 }
-	}
-
-	&:after { // bottom border
-		position: relative;
-		bottom: 0;
-		left: 30px;
-		width: ~"calc(100% - 30px)";
-		height: 1px;
-		display: block;
-		content: "";
-		background: @gr2;
 	}
 }
