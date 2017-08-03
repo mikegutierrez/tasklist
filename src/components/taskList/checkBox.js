@@ -75,7 +75,10 @@ class CheckBox extends Component {
 
 	updateLabel(index) {
 		this.refs[index].blur();
-		this.props.editTask(this.state.inputValue, index);
+		if (this.state.inputValue !== '') {
+			this.props.editTask(this.state.inputValue, index);
+		}
+		return;
 	}
 
 	onKeyPress(e, index) {
