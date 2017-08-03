@@ -9,6 +9,7 @@
   "author": "Mike Gutierrez",
   "license": "ISC",
   "devDependencies": {
+    "autosize": "^4.0.0",
     "babel-cli": "6.24.1",
     "eslint": "4.2.0",
     "eslint-config-google": "0.9.1",

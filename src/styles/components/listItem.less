@@ -1,18 +1,19 @@
 .task-list-item {
 	position: relative;
+	
 	span {
 		opacity: 0;
 		transition: @trans-all300;
 
 		.btn-transparent {
-			.button-variant(@gr2; transparent; transparent);
+			.button-variant(@gr2; rgba(0,0,0, .1); transparent);
 			position: absolute;
-			bottom: 8px;
+			top: -6px;
 			right: 0;
 			border: none;
 			font-size: 10px;
 			padding: 6px 8px;
-			transition: background 3ms, color 3ms;
+			transition: @trans-all300;
 
 			&:focus, &:active {
 				.button-variant(@gr2; transparent; transparent);
@@ -22,7 +23,7 @@
 
 			&:hover {
 				color: @gr1;
-				background: rgba(0,0,0, .1);
+				background: #E5E5E5;
 			}
 		}
 	}

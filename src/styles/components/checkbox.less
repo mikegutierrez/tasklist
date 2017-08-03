@@ -1,7 +1,11 @@
 .check-box {
 	display: inline-block;
+	width: 100%;
 
 	.check-icon {
+		position: relative;
+		width: 20px;
+		height: 20px;
 		border-radius: 50%;
 		border: 2px solid @br1;
 		transition: @trans-all300;
@@ -13,10 +17,10 @@
 
 		&::before {
 			position: absolute;
-			top: 2px;
-			left: 2px;
-			width: 16px;
-			height: 16px;
+			top: 1px;
+			left: 1px;
+			width: 14px;
+			height: 14px;
 			border: 1px solid #fff;
 			border-radius: inherit;
 			content: "";
@@ -25,14 +29,21 @@
 
 	}
 
-	.input-label {
+	textarea {
 		position: relative;
 		left: 9px;
 		top: -4px;
 		width: ~"calc(100% - 20px)";
+		max-height: 80px;
+		min-height: 20px;
+		height: 20px;
+		font-size: 16px;
+		line-height: 20px;
 		border: none;
 		outline: none;
 		font-weight: bold;
 		&:extend(.lato);
+
+		resize: none;
 	}
 }

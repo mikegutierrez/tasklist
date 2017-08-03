@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { autoBindMethods } from '../../helpers/autoBindMethods';
 import classnames from 'classnames';
+import autosize from 'autosize';
 
 class CheckBox extends Component {
 	static get propTypes() {
@@ -9,8 +10,6 @@ class CheckBox extends Component {
 			onChange: PropTypes.func,
 			editTask: PropTypes.func,
 			label: PropTypes.string,
-			width: PropTypes.string,
-			height: PropTypes.string,
 			classes: PropTypes.array,
 			index: PropTypes.number
 		};
@@ -22,8 +21,6 @@ class CheckBox extends Component {
 			editTask: () => {},
 			onChange: () => {},
 			label: '',
-			width: '20px',
-			height: '20px',
 			classes: [],
 			index: 0
 		};
@@ -36,6 +33,10 @@ class CheckBox extends Component {
 			inputValue: ''
 		};
 		autoBindMethods(this);
+	}
+
+	componentDidMount() {
+		autosize(this.refs[this.props.index]);
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -51,27 +52,24 @@ class CheckBox extends Component {
 	}
 
 	renderIcon() {
-		const iconStyle = { width: this.props.height, height: this.props.height };
 		const iconClass = classnames('check-icon', 'inline-block', {
 			'active': this.state.checked
 		});
 		return (
-			<div onClick={this.onChange} className={iconClass} style={iconStyle}></div>
+			<div onClick={this.onChange} className={iconClass}></div>
 		);
 	}
 
 	renderLabel() {
-		const labelStyle = { lineHeight: this.props.height, fontSize: parseInt(this.props.height, 10) - 4 + 'px' };
 		return (
-			<input
-				className="input-label inline-block"
-				style={labelStyle}
+			<textarea
+				className="inline-block"
 				defaultValue={this.props.label}
 				onChange={this.handleChange}
 				onKeyPress={(e) => this.onKeyPress(e, this.props.index)}
 				onBlur={() => this.updateLabel(this.props.index)}
 				ref={this.props.index}
-			></input>
+			></textarea>
 		);
 	}
 
