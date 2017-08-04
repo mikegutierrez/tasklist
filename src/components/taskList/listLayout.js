@@ -19,43 +19,65 @@ class ListLayout extends Component {
 	}
 
 	addTask(task) {
-		const list = this.state.tasks.concat(task);
+		const list = [...this.state.tasks, task];
+		console.log('5. addTask:  ', task + '\n' + 'list:  ', list);
 		this.setState({ tasks: list });
 	}
 
 	editTask(task, index) {
 		const taskList = this.state.tasks;
 		if (index !== -1) {
-			taskList[index] = task;
+			const updatedList = [
+				...taskList.slice(task, index),
+				task,
+				...taskList.slice(index + 1)
+			];
+			console.log('!!! editTask updatedList:  ', updatedList);
+			this.setState({ tasks: updatedList });
 		}
-		this.setState({ tasks: taskList });
 	}
 
 	deleteTask(task, index, location) {
+		console.log('4. deleteTask' + '\n' + 'location:  ', location + '\n' + 'task:  ', task, '\n' + 'index:  ', index);
 		const taskList = this.state.tasks;
-		const taskItem = taskList.indexOf(task);
+		const taskIndex = taskList.indexOf(task);
 		const completedList = this.state.completed;
-		const completedItem = completedList.indexOf(task);
+		const completedIndex = completedList.indexOf(task);
+
+		console.log('taskIndex:  ', taskIndex + '\n' + 'completedIndex:  ', completedIndex);
 
 		if (location === 'taskList') {
 			if (index !== -1) {
-				taskList.splice(taskItem, 1);
+				const updatedList = [
+					...taskList.slice(task, taskIndex),
+					...taskList.slice(taskIndex + 1)
+				];
+				console.log('*** post deleteTask tasklist: ', updatedList);
+				this.setState({ tasks: updatedList });
+				console.log('deleteTask state.tasks:  ', this.state.tasks);
 			}
-			this.setState({ tasks: taskList });
 		} else if (location === 'completedTasks') {
 			if (index !== -1) {
-				completedList.splice(completedItem, 1);
+				const updatedList = [
+					...completedList.slice(task, completedIndex),
+					...completedList.slice(completedIndex + 1)
+				];
+				console.log('*** post deleteTask completedList: ', updatedList);
+				this.setState({ completed: updatedList });
+				console.log('deleteTask state.completed:  ', this.state.completed);
 			}
-			this.setState({ completed: completedList });
 		}
 	}
 
 	completeTask(listItem) {
-		const list = this.state.completed.concat(listItem);
+		const list = [...this.state.completed, listItem];
+		console.log('5. completeTask:  ', listItem + '\n' + 'list:  ', list);
+
 		this.setState({ completed: list });
 	}
 
 	render() {
+		console.log('1. listLayout RENDER' + '\n' + 'state.tasks:  ', this.state.tasks + '\n' + 'state.completed:  ', this.state.completed);
 		return (
 			<div id="layout">
 				<div className="row center-content">

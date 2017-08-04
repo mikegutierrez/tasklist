@@ -44,6 +44,7 @@ class ListItem extends Component {
 	}
 
 	handleTaskCheck(location, task, index) {
+		console.log('3. handleTaskCheck' + '\n' + 'location:  ', location + '\n' + 'task:  ', task, '\n' + 'index:  ', index);
 		const label = this.props.task;
 
 		if (location === 'taskList' && this.state.checked) {

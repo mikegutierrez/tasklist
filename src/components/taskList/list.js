@@ -27,6 +27,7 @@ class List extends Component {
 	}
 
 	renderList() {
+		console.log('2. renderList' + '\n' + 'props.location:  ', this.props.location + '\n' + 'props.tasks:  ', this.props.tasks);
 		return (
 			this.props.tasks.map((task, index) => {
 				return (

@@ -64,7 +64,7 @@ class CheckBox extends Component {
 		return (
 			<textarea
 				className="inline-block margin-bottom-s"
-				defaultValue={this.props.label}
+				value={this.state.inputValue ? this.state.inputValue : this.props.label}
 				onChange={this.handleChange}
 				onKeyPress={(e) => this.onKeyPress(e, this.props.index)}
 				onBlur={() => this.updateLabel(this.props.index)}
