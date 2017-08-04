@@ -60,7 +60,6 @@ class ListLayout extends Component {
 
 	completeTask(listItem) {
 		const list = [...this.state.completed, listItem];
-
 		this.setState({ completed: list });
 	}
 
