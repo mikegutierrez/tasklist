@@ -47,7 +47,7 @@ class CheckBox extends Component {
 
 	onChange(e) {
 		e.preventDefault();
-		const checked = !this.state.checked;
+		const checked = this.state.checked;
 		this.setState({ checked }, () => this.props.onChange(checked));
 	}
 
