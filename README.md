@@ -1,16 +1,18 @@
 # Task List
 
-Task List project built on React, LESS & Webpack.
+Task List project built on React with Less and Webpack.
 
 # Requirements
 
 * Do not allow blank tasks
 * Create a new task when user presses enter key or clicks the 'Add Task' button
-* Create a close button that appears on hover. Clicking the button removes the task from the list and application memory
+* Delete a task when a user hovers and clicks delete button
+* Tasks must be editable
 * Once a task has been marked complete, add it to a new list on the page
+* Tasks can be moved between lists
 
 ## Built With
-
+* [Autosize](https://www.npmjs.com/package/autosize) - Automatically adjust textarea height to fit text
 * [Babel CLI](https://github.com/babel/babel/tree/master/packages/babel-cli) - Compile from the command line
 * [Babel Core](https://github.com/babel/babel/tree/master/packages/babel-core) - Support the latest version of Javascript
 * [Bootstrap](https://github.com/twbs/bootstrap) - HTML, CSS, and Javascript framework used for design and layout features
