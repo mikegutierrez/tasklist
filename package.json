@@ -4,7 +4,6 @@
   "description": "Task list project built on React with Less and Webpack",
   "main": "index.js",
   "scripts": {
-	"start": "node server.js",
     "webpack": "webpack"
   },
   "author": "Mike Gutierrez",
