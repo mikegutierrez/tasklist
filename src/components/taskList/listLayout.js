@@ -42,7 +42,7 @@ class ListLayout extends Component {
 		if (location === 'taskList') {
 			if (index !== -1) {
 				const updatedList = [
-					...taskList.slice(task, index),
+					...taskList.slice(JSON.stringify(task), index),
 					...taskList.slice(index + 1)
 				];
 				this.setState({ tasks: updatedList });
@@ -50,7 +50,7 @@ class ListLayout extends Component {
 		} else if (location === 'completedTasks') {
 			if (index !== -1) {
 				const updatedList = [
-					...completedTasks.slice(task, index),
+					...completedTasks.slice(JSON.stringify(task), index),
 					...completedTasks.slice(index + 1)
 				];
 				this.setState({ completed: updatedList });
